@@ -17,8 +17,11 @@
     <!-- MetisMenu CSS -->
     <link href="{{asset('/vendor/metisMenu/metisMenu.min.css')}}" rel="stylesheet" type="text/css">
 
-    <!-- Custom CSS -->
-    <link href="{{asset('/dist/css/sb-admin-2.css')}}" rel="stylesheet" type="text/css">
+    <!-- datatables CSS -->
+    <link href="{{asset('/vendor/datatables-plugins/dataTables.bootstrap.css')}}" rel="stylesheet" type="text/css">
+
+    <!-- DataTables Responsive CSS -->
+    <link href="{{asset('/vendor/datatables-responsive/dataTables.responsive.css')}}" rel="stylesheet" type="text/css">
 
     <!-- Morris Charts CSS -->
     <link href="{{asset('/dist/css/sb-admin-2.css')}}" rel="stylesheet" type="text/css">
@@ -263,6 +266,7 @@
 <!-- Metis Menu Plugin JavaScript -->
 <script src="{{asset('/vendor/metisMenu/metisMenu.min.js')}}"></script>
 
+@yield('js')
 <!-- Morris Charts JavaScript -->
 
 <script src="{{asset('/vendor/raphael/raphael.min.js')}}"></script>
@@ -273,7 +277,9 @@
 
 <!-- Custom Theme JavaScript -->
 <script src="{{asset('/dist/js/sb-admin-2.js')}}"></script>
+<!-- datatables Theme JavaScript -->
 
+@yield('script')
 </body>
 
 </html>

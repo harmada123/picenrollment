@@ -11,4 +11,8 @@ class Payment extends Model
         'remittance_date',
         'amount'
     ];
+
+    public function user(){
+        return $this->hasMany('App\User');
+    }
 }
