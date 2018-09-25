@@ -1,14 +1,16 @@
-@extends('layouts.admin')
+@extends('layouts.payroll')
 @section('content')
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Add Students
+                    <ol class="breadcrumb">
+                        Add Students
+                    </ol>
                 </div>
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-lg-8">
+                        <div class="col-lg-12">
                             {!! Form::open() !!}
                             <div class="form-group">
                                 {!! Form::label('name', 'First Name : ') !!}
@@ -25,16 +27,17 @@
                             <div class="form-group">
                                 <div class='input-group date' id='datepicker'>
                                     {!! Form::label('birthday', 'Birthday : ') !!}
+
                                     {!! Form::date('birthday',null,['class'=>'form-control']) !!}
                                 </div>
                             </div>
                             <div class="form-group">
                                 {!! Form::label('course_id', 'Course : ') !!}
-                                {!! Form::select('course_id',array('Choose Options'),NULL, array('class' => 'form-control')) !!}
+                                {!! Form::select('course_id',array('Choose Options') + $courses ,NULL, array('class' => 'form-control')) !!}
                             </div>
                             <div class="form-group">
                                 {!! Form::label('section_id', 'Section : ') !!}
-                                {!! Form::select('section_id',array('Choose Options'),NULL, array('class' => 'form-control')) !!}
+                                {!! Form::select('section_id',array('Choose Options')+ $sections ,NULL, array('class' => 'form-control')) !!}
                             </div>
                             <div class="form-group">
                                 <div class='input-group date' id='datepicker'>

@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Course;
-use App\Section;
-use App\Student;
 use Illuminate\Http\Request;
-use App\User;
+use App\Term;
 use Yajra\DataTables\DataTables;
-class StudentRecordController extends Controller
+class ManageTermController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +14,7 @@ class StudentRecordController extends Controller
      */
     public function index()
     {
-        return view('student.index');
+        return view('term.index');
     }
 
     /**
@@ -27,9 +24,7 @@ class StudentRecordController extends Controller
      */
     public function create()
     {
-        $courses = Course::pluck('id','course')->all();
-        $sections = Section::pluck('id','section')->all();
-        return view('student.addstudent',compact('courses','sections'));
+        return view('term.addterm');
     }
 
     /**
@@ -87,12 +82,11 @@ class StudentRecordController extends Controller
     {
         //
     }
-
     public function viewStudent(){
 
         return view('student.index');
     }
     public function get_datatable(){
-        return DataTables::of(Student::query())->make(true);
+        return DataTables::of(Term::query())->make(true);
     }
 }

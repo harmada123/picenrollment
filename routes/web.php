@@ -23,3 +23,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('/management','ManagementInformationController');
 Route::resource('/student','StudentRecordController');
+Route::get('/getstudent','StudentRecordController@viewStudent');
+Route::get('/getstudent/get_datatable','StudentRecordController@get_datatable');
+Route::resource('/term','ManageTermController');
+Route::get('/getterm','StudentRecordController@viewStudent');
+Route::get('/getterm/get_datatable','StudentRecordController@get_datatable');
+Route::resource('/section','ManageSectionController');

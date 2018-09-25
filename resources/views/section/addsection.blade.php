@@ -13,16 +13,16 @@
                         <div class="col-lg-12">
                             {!! Form::open() !!}
                             <div class="form-group">
-                                {!! Form::label('term', 'Term Name : ') !!}
-                                {!! Form::text('term',null,['class'=>'form-control', 'placeholder'=>'eg. September 2018 - December 2018']) !!}
+                                {!! Form::label('section', 'Section Name : ') !!}
+                                {!! Form::text('section',null,['class'=>'form-control', 'placeholder'=>'eg. Term 1 Section 1']) !!}
                             </div>
                             <div class="form-group">
-                                {!! Form::label('termdate', 'Start Term : ') !!}
-                                {!! Form::date('termdate',null,['class'=>'form-control']) !!}
+                                {!! Form::label('location', 'Location : ') !!}
+                                {!! Form::text('location',null,['class'=>'form-control', 'placeholder'=>'eg. Cavite']) !!}
                             </div>
                             <div class="form-group">
-                                {!! Form::label('total', 'Tution Fee : ') !!}
-                                {!! Form::number('total',null,['class'=>'form-control','step' => '0.1']) !!}
+                                {!! Form::label('term', 'Tution Fee : ') !!}
+                                {!! Form::select('term_id',array('Choose Options')+ $terms, null,['class'=>'form-control']) !!}
                             </div>
                             <div class="form-group">
                                 {!! Form::submit('Create Term',['class'=>'btn btn-primary']) !!}

@@ -27,4 +27,7 @@ class Student extends Model
     public function section(){
         return $this->belongsTo('App\Section');
     }
+    public function course(){
+        return $this->belongsTo('App\Course');
+    }
 }

@@ -6,5 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Term extends Model
 {
-    //
+    protected $fillable = [
+        'term',
+        'termdate',
+        'total',
+    ];
 }
