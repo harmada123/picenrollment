@@ -41,7 +41,7 @@
                     {data: 'section', name:'sections.section',
                         "render": function(data, type, row, meta){
                             if(type === 'display'){
-                                data = '<a href="' + 'users/'+ row.id + '/edit'+'">' + data + '</a>';
+                                data = '<a href="' + 'getpayments/'+ row.id +'">' + data + '</a>';
                             }
                             return data;
                         }
