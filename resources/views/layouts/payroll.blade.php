@@ -54,7 +54,16 @@
                 <a class="dropdown-item" href="#">Settings</a>
                 <a class="dropdown-item" href="#">Activity Log</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
+                <a class="dropdown-item" href="{{ route('logout') }}"
+                   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                    {{ __('Logout') }}
+                </a>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+            </div>
             </div>
         </li>
     </ul>
@@ -89,8 +98,19 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="pagesDropdown">
                 <h6 class="dropdown-header">Manage Section:</h6>
-                <a class="dropdown-item" href="{{route('section.index')}}">Search Section</a>
+                <a class="dropdown-item" href="{{url('/getsection')}}">Search Section</a>
                 <a class="dropdown-item" href="{{route('section.create')}}">Create New Section</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-fw fa-code-branch"></i>
+                <span>Course</span>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+                <h6 class="dropdown-header">Manage Course:</h6>
+                <a class="dropdown-item" href="{{url('/getcourse')}}">Search Course</a>
+                <a class="dropdown-item" href="{{route('course.create')}}">Create New Course</a>
             </div>
         </li>
         <li class="nav-item dropdown">
@@ -100,7 +120,7 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="pagesDropdown">
                 <h6 class="dropdown-header">Manage Terms:</h6>
-                <a class="dropdown-item" href="{{route('term.index')}}">Search Terms</a>
+                <a class="dropdown-item" href="{{url('/getterm')}}">Search Terms</a>
                 <a class="dropdown-item" href="{{route('term.create')}}">Create New Term</a>
             </div>
         </li>
@@ -133,7 +153,7 @@
         <footer class="sticky-footer">
             <div class="container my-auto">
                 <div class="copyright text-center my-auto">
-                    <span>Copyright © Your Website 2018</span>
+                    <span>Copyright © Pacific InterContinental College 2018</span>
                 </div>
             </div>
         </footer>
@@ -173,7 +193,8 @@
 <script src="{{asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
 <!-- Core plugin JavaScript-->
-<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="{{asset('vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+{{--<script src="vendor/jquery-easing/jquery.easing.min.js"></script>--}}
 
 <!-- Page level plugin JavaScript-->
 <script src="vendor/chart.js/Chart.min.js"></script>
@@ -181,7 +202,8 @@
 
 <script src='{{asset('vendor/datatables/dataTables.bootstrap4.js')}}'></script>
 <!-- Custom scripts for all pages-->
-<script src="js/sb-admin.min.js"></script>
+
+<script src="{{asset('js/sb-admin.min.js')}}"></script>
 
 <!-- Demo scripts for this page-->
 <script src="js/demo/datatables-demo.js"></script>

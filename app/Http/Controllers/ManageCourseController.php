@@ -3,14 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Course;
-use App\Section;
-use App\Student;
 use Illuminate\Http\Request;
-use App\User;
-use App\Photo;
 use Yajra\DataTables\DataTables;
-use Illuminate\Support\Facades\DB;
-class StudentRecordController extends Controller
+
+class ManageCourseController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,7 +15,7 @@ class StudentRecordController extends Controller
      */
     public function index()
     {
-        return view('student.index');
+
     }
 
     /**
@@ -29,9 +25,7 @@ class StudentRecordController extends Controller
      */
     public function create()
     {
-        $courses = Course::pluck('course','course')->all();
-        $sections = Section::pluck('section','id')->all();
-        return view('student.addstudent',compact('courses','sections'));
+        return view('course.addcourse');
     }
 
     /**
@@ -43,16 +37,8 @@ class StudentRecordController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-        if($file = $request->file('photo_id')) {
-            $name = time().$file->getClientOriginalName();
-            $file->move('images',$name);
-            $photo = Photo::create(['file'=>$name]);
-            $input['photo_id'] = $photo->id;
-            $input['password'] = bcrypt($request->lname . $request->birthday);
-            User::create($input);
-            Student::create($input);
-        }
-
+        Course::create($input);
+        return redirect('/getcourse');
     }
 
     /**
@@ -99,13 +85,11 @@ class StudentRecordController extends Controller
     {
         //
     }
+    public function viewCourse(){
 
-    public function viewStudent(){
-
-        return view('student.index');
+        return view('course.index');
     }
     public function get_datatable(){
-        $students = Student::join('sections','students.section_id','sections.id')->select('students.id','students.name','students.lname','sections.section','students.course');
-        return DataTables::of($students)->make(true);
+        return DataTables::of(Course::query())->make(true);
     }
 }

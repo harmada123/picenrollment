@@ -13,7 +13,7 @@ class Section extends Model
         ];
 
     public function term(){
-        return $this->belongsTo('App\Term');
+        return $this->belongsTo('App\Term','term_id');
     }
 
 }

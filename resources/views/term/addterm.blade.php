@@ -11,7 +11,7 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-12">
-                            {!! Form::open() !!}
+                            {!! Form::open(['method'=>'POST','action'=>'ManageTermController@store']) !!}
                             <div class="form-group">
                                 {!! Form::label('term', 'Term Name : ') !!}
                                 {!! Form::text('term',null,['class'=>'form-control', 'placeholder'=>'eg. September 2018 - December 2018']) !!}

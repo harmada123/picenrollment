@@ -8,14 +8,13 @@
         </div>
         <div class="panel-body">
             <div class="table-responsive">
-                <table id="users" class="table table-hover table-striped">
+                <table id="terms" class="table table-hover table-striped">
                     <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Name</th>
-                        <th>Last Name</th>
-                        <th>Course</th>
                         <th>Term</th>
+                        <th>Term Date</th>
+                        <th>Tuition</th>
                     </tr>
                     </thead>
                 </table>
@@ -28,15 +27,13 @@
     <script src="https://datatables.yajrabox.com/js/datatables.bootstrap.js"></script>
     <script type="text/javascript">
         $(function() {
-            $('#users').DataTable({
+            $('#terms').DataTable({
                 processing: true,
                 serverSide: true,
                 ajax: '/picenrollment/public/getterm/get_datatable',
                 columns : [
                     {data: 'id'},
-                    {data: 'name'},
-                    {data: 'lastname'},
-                    {data: 'course',
+                    {data: 'term',
                         "render": function(data, type, row, meta){
                             if(type === 'display'){
                                 data = '<a href="' + 'users/'+ row.id + '/edit'+'">' + data + '</a>';
@@ -44,7 +41,8 @@
                             return data;
                         }
                     },
-                    {data: 'skill'},
+                    {data: 'termdate'},
+                    {data: 'total'},
                 ],
                 pageLength: 5,
             });

@@ -12,7 +12,7 @@ class Student extends Model
         'lname',
         'birthday',
         'photo_id',
-        'course_id',
+        'course',
         'section_id',
         'year_enrolled',
 

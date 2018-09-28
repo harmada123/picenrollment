@@ -35,7 +35,9 @@ class ManageTermController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        Term::create($input);
+        return redirect('/getterm');
     }
 
     /**
@@ -82,9 +84,9 @@ class ManageTermController extends Controller
     {
         //
     }
-    public function viewStudent(){
+    public function viewTerm(){
 
-        return view('student.index');
+        return view('term.index');
     }
     public function get_datatable(){
         return DataTables::of(Term::query())->make(true);

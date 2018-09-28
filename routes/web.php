@@ -26,6 +26,13 @@ Route::resource('/student','StudentRecordController');
 Route::get('/getstudent','StudentRecordController@viewStudent');
 Route::get('/getstudent/get_datatable','StudentRecordController@get_datatable');
 Route::resource('/term','ManageTermController');
-Route::get('/getterm','StudentRecordController@viewStudent');
-Route::get('/getterm/get_datatable','StudentRecordController@get_datatable');
+Route::get('/getterm','ManageTermController@viewTerm');
+Route::get('/getterm/get_datatable','ManageTermController@get_datatable');
 Route::resource('/section','ManageSectionController');
+Route::get('/getsection','ManageSectionController@viewSection');
+Route::get('/getsection/get_datatable','ManageSectionController@get_datatable');
+
+Route::resource('/course','ManageCourseController');
+Route::get('/getcourse','ManageCourseController@viewCourse');
+Route::get('/getcourse/get_datatable','ManageCourseController@get_datatable');
+

@@ -15,7 +15,8 @@
                         <th>Name</th>
                         <th>Last Name</th>
                         <th>Course</th>
-                        <th>Term</th>
+                        <th>Section</th>
+
                     </tr>
                     </thead>
                 </table>
@@ -31,12 +32,13 @@
             $('#users').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '/picenrollment/public/getterm/get_datatable',
+                ajax: '/picenrollment/public/getstudent/get_datatable',
                 columns : [
-                    {data: 'id'},
-                    {data: 'name'},
-                    {data: 'lastname'},
-                    {data: 'course',
+                    {data: 'id', name: 'students.id'},
+                    {data: 'name', name:'students.name'},
+                    {data: 'lname', name:'students.lname'},
+                    {data: 'course', name:'students.course'},
+                    {data: 'section', name:'sections.section',
                         "render": function(data, type, row, meta){
                             if(type === 'display'){
                                 data = '<a href="' + 'users/'+ row.id + '/edit'+'">' + data + '</a>';
@@ -44,7 +46,6 @@
                             return data;
                         }
                     },
-                    {data: 'skill'},
                 ],
                 pageLength: 5,
             });

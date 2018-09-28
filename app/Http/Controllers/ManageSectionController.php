@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Section;
 use App\Term;
 use Illuminate\Http\Request;
-
+use Yajra\DataTables\DataTables;
 class ManageSectionController extends Controller
 {
     /**
@@ -24,7 +25,7 @@ class ManageSectionController extends Controller
      */
     public function create()
     {
-        $terms = Term::pluck('id','term')->all();
+        $terms = Term::pluck('term','id')->all();
         return view('section.addsection',compact('terms'));
     }
 
@@ -36,7 +37,9 @@ class ManageSectionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        Section::create($input);
+        return redirect('/getsection');
     }
 
     /**
@@ -82,5 +85,12 @@ class ManageSectionController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function viewSection(){
+
+        return view('section.index');
+    }
+    public function get_datatable(){
+        return DataTables::of(Section::query())->make(true);
     }
 }
