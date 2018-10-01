@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Term;
 use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\DB;
 class ManageTermController extends Controller
 {
     /**
@@ -91,4 +92,12 @@ class ManageTermController extends Controller
     public function get_datatable(){
         return DataTables::of(Term::query())->make(true);
     }
+
+    public function totalPayment($id){
+
+        $term = DB::table('payments')->where('term',$id)->sum('amount');
+        return view('term.totalpayment',compact('term'));
+    }
+
+
 }

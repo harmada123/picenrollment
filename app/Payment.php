@@ -9,7 +9,10 @@ class Payment extends Model
     protected $fillable = [
         'user_id',
         'remittance_date',
-        'amount'
+        'amount',
+        'term',
+        'OR_number',
+        'section_id'
     ];
 
     public function user(){

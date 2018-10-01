@@ -3,7 +3,7 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <ol class="breadcrumb">
-                Search Students
+                Payments
             </ol>
         </div>
     </div>
@@ -14,17 +14,27 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-12">
-                            {!! Form::open(['method'=>'POST','action'=>'ManageCourseController@store']) !!}
+                            {!! Form::open(['method'=>'POST','action'=>'ManagePaymentController@store']) !!}
                             <div class="form-group">
-                                {!! Form::label('course', 'Course Name : ') !!}
-                                {!! Form::text('course',null,['class'=>'form-control', 'placeholder'=>'eg. Computer Science']) !!}
+                                {!! Form::label('remittance_date', 'Remittance Date : ') !!}
+                                {!! Form::date('remittance_date',null,['class'=>'form-control','required']) !!}
                             </div>
                             <div class="form-group">
-                                {!! Form::label('degree', 'Degree : ') !!}
-                                {!! Form::select('degree',array('Bachelors'=>'Bachelors','Masteral'=>'Masteral','Doctoral'=>'Doctoral'),null,['class'=>'form-control']) !!}
+                                {!! Form::label('amount', 'Amount : ') !!}
+                                {!! Form::number('amount',null,['class'=>'form-control']) !!}
                             </div>
                             <div class="form-group">
-                                {!! Form::submit('Create Term',['class'=>'btn btn-primary']) !!}
+                                {!! Form::label('term', 'Term : ') !!}
+                                {!! Form::select('term',array('1st'=>'1st','2nd'=>'2nd','3rd'=>'3rd','4th'=>'4th','5th'=>'5th','6th'=>'6th'),null,['class'=>'form-control']) !!}
+                            </div>
+                            <div class="form-group">
+                                {!! Form::label('OR_number', 'OR Number : ') !!}
+                                {!! Form::text('OR_number',null,['class'=>'form-control']) !!}
+                                {!! Form::hidden('user_id',$id,['value'=>$id]); !!}
+                                {!! Form::hidden('section_id',$section_id,['value'=>$section_id]); !!}
+                            </div>
+                            <div class="form-group">
+                                {!! Form::submit('Create Payment',['class'=>'btn btn-primary']) !!}
                             </div>
                             {!! Form::close() !!}
                         </div>
@@ -41,12 +51,43 @@
                             <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Course</th>
-                                <th>Degree</th>
+                                <th>Remittance Date</th>
+                                <th>Term</th>
+                                <th>Amount</th>
+                                <th>OR Number</th>
                             </tr>
                             </thead>
                         </table>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row">
+
+                    <div class="col-lg-2">
+                        <label class="h4">1st Term </label> : {{$term1}}
+                    </div>
+                    <div class="col-lg-2">
+                        <label class="h4">2nd Term </label> : {{$term2}}
+                    </div>
+                    <div class="col-lg-2">
+                        <label class="h4">3rd Term </label> : {{$term3}}
+                    </div>
+                    <div class="col-lg-2">
+                        <label class="h4">4th Term </label> : {{$term4}}
+                    </div>
+                    <div class="col-lg-2">
+                        <label class="h4">5th Term </label> : {{$term5}}
+                    </div>
+                    <div class="col-lg-2">
+                        <label class="h4">6th Term </label> : {{$term6}}
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -60,10 +101,10 @@
             $('#terms').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '/picenrollment/public/getpayments/{id}/get_datatable',
+                ajax: '/picenrollment/public/getpayments/'+{{$id}}+'/get_datatable',
                 columns : [
                     {data: 'id'},
-                    {data: 'course',
+                    {data: 'remittance_date',
                         "render": function(data, type, row, meta){
                             if(type === 'display'){
                                 data = '<a href="' + 'users/'+ row.id + '/edit'+'">' + data + '</a>';
@@ -71,7 +112,9 @@
                             return data;
                         }
                     },
-                    {data: 'degree'},
+                    {data: 'term'},
+                    {data: 'amount'},
+                    {data: 'OR_number'},
                 ],
                 pageLength: 5,
             });

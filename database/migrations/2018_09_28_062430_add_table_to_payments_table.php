@@ -15,8 +15,8 @@ class AddTableToPaymentsTable extends Migration
     {
         Schema::table('payments', function (Blueprint $table) {
             $table->string('term');
+            $table->integer('section_id');
             $table->string('OR_number');
-            $table->string('file');
         });
     }
 
@@ -29,8 +29,8 @@ class AddTableToPaymentsTable extends Migration
     {
         Schema::table('payments', function (Blueprint $table) {
             $table->dropColumn('term');
+            $table->dropColumn('section_id');
             $table->dropColumn('OR_number');
-            $table->dropColumn('file');
         });
     }
 }

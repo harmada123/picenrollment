@@ -30,6 +30,7 @@ Route::get('/getstudent/get_datatable','StudentRecordController@get_datatable');
 Route::resource('/term','ManageTermController');
 Route::get('/getterm','ManageTermController@viewTerm');
 Route::get('/getterm/get_datatable','ManageTermController@get_datatable');
+Route::get('/sections/{id}','ManagePaymentController@totalPayment');
 
 Route::resource('/section','ManageSectionController');
 Route::get('/getsection','ManageSectionController@viewSection');

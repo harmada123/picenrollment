@@ -48,10 +48,13 @@ class StudentRecordController extends Controller
             $file->move('images',$name);
             $photo = Photo::create(['file'=>$name]);
             $input['photo_id'] = $photo->id;
-            $input['password'] = bcrypt($request->lname . $request->birthday);
+            $input['password'] = bcrypt($request->lname . str_replace("-","", $request->birthday));
+            $student = Student::create($input);
+            $input['std_id'] = $student->id;
             User::create($input);
-            Student::create($input);
+
         }
+        return redirect('/student');
 
     }
 

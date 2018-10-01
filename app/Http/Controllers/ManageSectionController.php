@@ -6,6 +6,7 @@ use App\Section;
 use App\Term;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\DB;
 class ManageSectionController extends Controller
 {
     /**
@@ -93,4 +94,7 @@ class ManageSectionController extends Controller
     public function get_datatable(){
         return DataTables::of(Section::query())->make(true);
     }
+
+
+
 }
