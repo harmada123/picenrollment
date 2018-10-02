@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 
 class ManagementInformationController extends Controller
 {
@@ -68,7 +69,17 @@ class ManagementInformationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::findOrFail($id);
+        if(trim($request->password)==''){
+            $input = $request->except('password');
+        }
+        else{
+            $input = $request->all();
+            $input['password'] = bcrypt($request->password);
+        }
+        $user->update($input);
+        return redirect('/management');
+
     }
 
     /**
@@ -80,5 +91,12 @@ class ManagementInformationController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function settings($id){
+
+        $users = User::find($id);
+        return view('mis.settings',compact('users'));
+
     }
 }

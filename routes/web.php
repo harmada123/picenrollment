@@ -31,6 +31,7 @@ Route::resource('/term','ManageTermController');
 Route::get('/getterm','ManageTermController@viewTerm');
 Route::get('/getterm/get_datatable','ManageTermController@get_datatable');
 Route::get('/sections/{id}','ManagePaymentController@totalPayment');
+Route::get('/getsections/{id}/datatable','ManagePaymentController@datatable');
 
 Route::resource('/section','ManageSectionController');
 Route::get('/getsection','ManageSectionController@viewSection');
@@ -43,4 +44,6 @@ Route::get('/getcourse/get_datatable','ManageCourseController@get_datatable');
 Route::resource('/payment','ManagePaymentController');
 Route::get('getpayments/{id}','ManagePaymentController@getPayments');
 Route::get('getpayments/{id}/get_datatable','ManagePaymentController@get_datatable');
+
+Route::get('/settings/{id}','ManagementInformationController@settings');
 

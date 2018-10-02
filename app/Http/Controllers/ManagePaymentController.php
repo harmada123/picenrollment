@@ -104,11 +104,20 @@ class ManagePaymentController extends Controller
     public function totalPayment($id){
 
         $term = DB::table('payments')->where('section_id',$id)->sum('amount');
+        $term1 = DB::table('payments')->where(['section_id'=>$id,'term'=>'1st'])->sum('amount');
+        $term2 = DB::table('payments')->where(['section_id'=>$id,'term'=>'2nd'])->sum('amount');
+        $term3 = DB::table('payments')->where(['section_id'=>$id,'term'=>'3rd'])->sum('amount');
+        $term4 = DB::table('payments')->where(['section_id'=>$id,'term'=>'4th'])->sum('amount');
+        $term5 = DB::table('payments')->where(['section_id'=>$id,'term'=>'5th'])->sum('amount');
+        $term6 = DB::table('payments')->where(['section_id'=>$id,'term'=>'6th'])->sum('amount');
 
-        return view('payments.totalpayment',compact('term'));
+
+        return view('payments.totalpayment')->with(compact('term','id','term1','term2','term3','term4','term5','term6'));
     }
     public function datatable($id){
-        return DataTables::of(Payment::query()->where('section_id',$id))->make(true);
+        return DataTables::of(Payment::join('students','payments.user_id','students.id')
+            ->select('students.id','students.name','students.lname','payments.amount')
+            ->where('students.section_id',$id))->make(true);
     }
 
 }

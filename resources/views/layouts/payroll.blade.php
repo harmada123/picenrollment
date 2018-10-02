@@ -51,8 +51,8 @@
                 <i class="fas fa-user-circle fa-fw"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">Settings</a>
-                <a class="dropdown-item" href="#">Activity Log</a>
+                <a class="dropdown-item" href={{url("/settings",Auth::user()->id)}}>Update Credentials</a>
+                <a class="dropdown-item" href={{url('/settings')}}>Update Personal Info</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{{ route('logout') }}"
                    onclick="event.preventDefault();
@@ -124,18 +124,7 @@
                 <a class="dropdown-item" href="{{route('term.create')}}">Create New Term</a>
             </div>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="charts.html">
-                <i class="fas fa-fw fa-chart-area"></i>
-                <span>Charts</span></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="tables.html">
-                <i class="fas fa-fw fa-table"></i>
-                <span>Tables</span></a>
-        </li>
     </ul>
-
     <div id="content-wrapper">
 
         <div class="container-fluid">
