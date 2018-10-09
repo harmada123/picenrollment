@@ -18,11 +18,13 @@ class CreateStudentsTable extends Migration
             $table->string('name');
             $table->string('mname');
             $table->string('lname');
+            $table->string('gender');
+            $table->string('address');
             $table->integer('photo_id')->nullable();
             $table->date('birthday');
             $table->string('course')->nullable();
-            $table->integer('section_id');
-            $table->date('year_enrolled');
+            $table->integer('section_id')->nullable();
+            $table->date('year_enrolled')->nullable();
             $table->timestamps();
         });
     }

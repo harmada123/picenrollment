@@ -15,6 +15,7 @@
                             <div class="form-group">
                                 {!! Form::label('name', 'First Name : ') !!}
                                 {!! Form::text('name',null,['class'=>'form-control', 'placeholder'=>'eg. Michael']) !!}
+                                {!! Form::hidden('role','student',['value'=>'student']) !!}
                             </div>
                             <div class="form-group">
                                 {!! Form::label('mname', 'Middle Name : ') !!}
@@ -42,6 +43,14 @@
                             <div class="form-group">
                                 {!! Form::label('section_id', 'Section : ') !!}
                                 {!! Form::select('section_id',array('Choose Options')+ $sections ,NULL, array('class' => 'form-control')) !!}
+                            </div>
+                            <div class="form-group">
+                                {!! Form::label('gender', 'Gender : ') !!}
+                                {!! Form::select('gender',array('Choose Options','Male'=>'Male','Female'=>'Female'),NULL, array('class' => 'form-control')) !!}
+                            </div>
+                            <div class="form-group">
+                                {!! Form::label('address', 'Address : ') !!}
+                                {!! Form::textarea('address',null,['class' => 'form-control']) !!}
                             </div>
                             <div class="form-group">
                                 <div class='input-group date' id='datepicker'>

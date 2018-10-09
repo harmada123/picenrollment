@@ -2,14 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Student;
 use Illuminate\Http\Request;
-use App\User;
-use App\Course;
-use App\Section;
-use Yajra\DataTables\DataTables;
 
-class ManagementInformationController extends Controller
+class ManageStudentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +13,7 @@ class ManagementInformationController extends Controller
      */
     public function index()
     {
-        return view('mis.index');
+        return view('student.studentview');
     }
 
     /**
@@ -28,7 +23,7 @@ class ManagementInformationController extends Controller
      */
     public function create()
     {
-        return view ('student.register');
+        //
     }
 
     /**
@@ -39,6 +34,7 @@ class ManagementInformationController extends Controller
      */
     public function store(Request $request)
     {
+        //
     }
 
     /**
@@ -72,18 +68,7 @@ class ManagementInformationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::findOrFail($id);
-
-        if(trim($request->password)==''){
-            $input = $request->except('password');
-        }
-        else{
-            $input = $request->all();
-            $input['password'] = bcrypt($request->password);
-        }
-        $user->update($input);
-        return redirect('/management');
-
+        //
     }
 
     /**
@@ -96,30 +81,4 @@ class ManagementInformationController extends Controller
     {
         //
     }
-
-    public function settings($id){
-
-        $users = User::find($id);
-        return view('mis.settings',compact('users'));
-
-    }
-    public function updateInfo($id){
-        $students = Student::find($id);
-        return view('mis.usersinfo',compact('students'));
-    }
-
-    public function inactiveUsers(){
-        return DataTables::of(Student::query()->where('course',null))->make(true);
-    }
-    public function viewInactive(){
-        return view('student.inactive');
-    }
-
-    public function updateCourse($id){
-        $students = Student::find($id);
-        $courses = Course::pluck('course','course')->all();
-        $sections = Section::pluck('section','id')->all();
-        return view('mis.usersinfo')->with(compact('students','courses','sections'));
-    }
-
 }

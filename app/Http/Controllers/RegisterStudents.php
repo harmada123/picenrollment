@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Course;
-use App\Section;
-use App\Student;
 use Illuminate\Http\Request;
-use App\User;
 use App\Photo;
-use Yajra\DataTables\DataTables;
-use Illuminate\Support\Facades\DB;
-class StudentRecordController extends Controller
+use App\Student;
+use App\User;
+
+class RegisterStudents extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,7 +16,7 @@ class StudentRecordController extends Controller
      */
     public function index()
     {
-        return view('student.index');
+        return view('student.register');
     }
 
     /**
@@ -29,9 +26,7 @@ class StudentRecordController extends Controller
      */
     public function create()
     {
-        $courses = Course::pluck('course','course')->all();
-        $sections = Section::pluck('section','id')->all();
-        return view('student.addstudent',compact('courses','sections'));
+
     }
 
     /**
@@ -42,20 +37,22 @@ class StudentRecordController extends Controller
      */
     public function store(Request $request)
     {
+
         $input = $request->all();
+        $input['password'] = bcrypt($request->password);
+
         if($file = $request->file('photo_id')) {
             $name = time().$file->getClientOriginalName();
             $file->move('images',$name);
             $photo = Photo::create(['file'=>$name]);
             $input['photo_id'] = $photo->id;
-            $input['password'] = bcrypt($request->lname . str_replace("-","", $request->birthday));
-            $student = Student::create($input);
-            $input['std_id'] = $student->id;
-            User::create($input);
+
 
         }
-        return redirect('/student');
-
+        $student = Student::create($input);
+        $input['std_id'] = $student->id;
+        User::create($input);
+        return redirect('/');
     }
 
     /**
@@ -89,17 +86,7 @@ class StudentRecordController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $student = Student::find($id);
-        $input = $request->all();
-        if($file = $request->file('photo_id')) {
-            $name = time().$file->getClientOriginalName();
-            $file->move('images',$name);
-            $photo = Photo::create(['file'=>$name]);
-            $input['photo_id'] = $photo->id;
-        }
-        $student->update($input);
-
-        return redirect('/management');
+        //
     }
 
     /**
@@ -111,19 +98,5 @@ class StudentRecordController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function viewStudent(){
-
-        return view('student.index');
-    }
-    public function get_datatable(){
-        $students = Student::join('sections','students.section_id','sections.id')->select('students.id','students.name','students.lname','sections.section','students.course');
-        return DataTables::of($students)->make(true);
-    }
-
-    public function updateUser(){
-        
-
     }
 }

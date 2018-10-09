@@ -12,10 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Auth::routes();
+//
+Route::resource('/register','RegisterStudents');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -46,4 +48,13 @@ Route::get('getpayments/{id}','ManagePaymentController@getPayments');
 Route::get('getpayments/{id}/get_datatable','ManagePaymentController@get_datatable');
 
 Route::get('/settings/{id}','ManagementInformationController@settings');
+Route::get('/usersinfo/{id}','ManagementInformationController@updateInfo');
+
+Route::resource('/pupil','ManageStudentController');
+
+Route::get('/inactive/get_datatable','ManagementInformationController@inactiveUsers');
+Route::get('/inactive','ManagementInformationController@viewInactive');
+
+Route::get('/users/{id}','ManagementInformationController@updateCourse');
+
 

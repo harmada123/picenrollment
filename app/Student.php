@@ -15,6 +15,8 @@ class Student extends Model
         'course',
         'section_id',
         'year_enrolled',
+        'address',
+        'gender',
 
     ];
 

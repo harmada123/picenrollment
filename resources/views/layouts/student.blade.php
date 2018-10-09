@@ -89,7 +89,6 @@
                 <h6 class="dropdown-header">Manage Students:</h6>
                 <a class="dropdown-item" href="{{url('/getstudent')}}">Search Student</a>
                 <a class="dropdown-item" href="{{route('student.create')}}">Add Students</a>
-                <a class="dropdown-item" href="{{url('/inactive')}}">Inactive Students</a>
             </div>
         </li>
         <li class="nav-item dropdown">
