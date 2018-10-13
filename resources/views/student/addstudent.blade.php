@@ -13,6 +13,10 @@
                         <div class="col-lg-12">
                             {!! Form::open(['action'=>'StudentRecordController@store','method'=>'POST','files'=>'true']) !!}
                             <div class="form-group">
+                                {!! Form::label('student_number', 'Student Number : ') !!}
+                                {!! Form::text('student_number',null,['class'=>'form-control', 'placeholder'=>'eg. ED446']) !!}
+                            </div>
+                            <div class="form-group">
                                 {!! Form::label('name', 'First Name : ') !!}
                                 {!! Form::text('name',null,['class'=>'form-control', 'placeholder'=>'eg. Michael']) !!}
                                 {!! Form::hidden('role','student',['value'=>'student']) !!}

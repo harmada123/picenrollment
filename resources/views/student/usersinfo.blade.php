@@ -1,4 +1,4 @@
-@extends('layouts.payroll')
+@extends('layouts.student')
 @section('content')
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -13,14 +13,10 @@
         <div class="col-lg-4">
             <div class="row">
                 <div class="col-lg-12">
-                    {!! Form::model($students,['action'=>['StudentRecordController@update',$students],'method'=>'PATCH','files' => true]) !!}
-                    <div class="form-group">
-                        {!! Form::label('student_number', 'Student Number : ') !!}
-                        {!! Form::text('student_number',null,['class'=>'form-control', 'placeholder'=>'eg. ED446']) !!}
-                    </div>
+                    {!! Form::model($students,['action'=>['ManagePupilController@update',$students],'method'=>'PATCH','files' => true]) !!}
                     <div class="form-group">
                         {!! Form::label('name', 'First Name : ') !!}
-                        {!! Form::text('name',null,['class'=>'form-control', 'placeholder'=>'eg. Michasdasdael']) !!}
+                        {!! Form::text('name',null,['class'=>'form-control', 'placeholder'=>'eg. Michael']) !!}
                     </div>
                     <div class="form-group">
                         {!! Form::label('mname', 'Middle Name : ') !!}
@@ -33,14 +29,6 @@
                     <div class="form-group">
                         {!! Form::label('photo_id','Picture:') !!}
                         {!! Form::file('photo_id',['class'=>'btn']) !!}
-                    </div>
-                    <div class="form-group">
-                        {!! Form::label('course', 'Course : ') !!}
-                        {!! Form::select('course',array('Choose Options') + $courses ,NULL, array('class' => 'form-control')) !!}
-                    </div>
-                    <div class="form-group">
-                        {!! Form::label('section_id', 'Section : ') !!}
-                        {!! Form::select('section_id',array('Choose Options')+ $sections ,NULL, array('class' => 'form-control')) !!}
                     </div>
                     <div class="form-group">
                         {!! Form::submit('Update Information',['class'=>'btn btn-primary']) !!}

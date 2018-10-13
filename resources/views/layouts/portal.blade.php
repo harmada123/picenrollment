@@ -51,8 +51,8 @@
                 <i class="fas fa-user-circle fa-fw"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href={{url("/usersettings",Auth::user()->id)}}>Update Credentials</a>
-                <a class="dropdown-item" href={{url("/studentusersinfo",Auth::user()->std_id)}}>Update Personal Info</a>
+                <a class="dropdown-item" href={{url("/settings",Auth::user()->id)}}>Update Credentials</a>
+                <a class="dropdown-item" href={{url("/usersinfo",Auth::user()->std_id)}}>Update Personal Info</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{{ route('logout') }}"
                    onclick="event.preventDefault();
@@ -76,59 +76,53 @@
     <ul class="sidebar navbar-nav">
         <li class="nav-item active">
             <a class="nav-link" href="{{url('/management')}}">
-                <i class="fas fa-fw fa-dollar-sign"></i>
-                <span>Payment History</span>
-            </a>
-        </li>
-        <li class="nav-item active">
-            <a class="nav-link" href="{{url('/grades')}}">
-                <i class="fas fa-fw fa-award"></i>
-                <span>Grades</span>
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Dashboard</span>
             </a>
         </li>
         {{--<li class="nav-item dropdown">--}}
-            {{--<a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
-                {{--<i class="fas fa-fw fa-user-graduate"></i>--}}
-                {{--<span>Manage Students</span>--}}
-            {{--</a>--}}
-            {{--<div class="dropdown-menu" aria-labelledby="pagesDropdown">--}}
-                {{--<h6 class="dropdown-header">Manage Students:</h6>--}}
-                {{--<a class="dropdown-item" href="{{url('/getstudent')}}">Search Student</a>--}}
-                {{--<a class="dropdown-item" href="{{route('student.create')}}">Add Students</a>--}}
-            {{--</div>--}}
+        {{--<a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
+        {{--<i class="fas fa-fw fa-user-graduate"></i>--}}
+        {{--<span>Manage Students</span>--}}
+        {{--</a>--}}
+        {{--<div class="dropdown-menu" aria-labelledby="pagesDropdown">--}}
+        {{--<h6 class="dropdown-header">Manage Students:</h6>--}}
+        {{--<a class="dropdown-item" href="{{url('/getstudent')}}">Search Student</a>--}}
+        {{--<a class="dropdown-item" href="{{route('student.create')}}">Add Students</a>--}}
+        {{--</div>--}}
         {{--</li>--}}
         {{--<li class="nav-item dropdown">--}}
-            {{--<a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
-                {{--<i class="fas fa-fw fa-user-alt-slash"></i>--}}
-                {{--<span>Create Section</span>--}}
-            {{--</a>--}}
-            {{--<div class="dropdown-menu" aria-labelledby="pagesDropdown">--}}
-                {{--<h6 class="dropdown-header">Manage Section:</h6>--}}
-                {{--<a class="dropdown-item" href="{{url('/getsection')}}">Search Section</a>--}}
-                {{--<a class="dropdown-item" href="{{route('section.create')}}">Create New Section</a>--}}
-            {{--</div>--}}
+        {{--<a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
+        {{--<i class="fas fa-fw fa-user-alt-slash"></i>--}}
+        {{--<span>Create Section</span>--}}
+        {{--</a>--}}
+        {{--<div class="dropdown-menu" aria-labelledby="pagesDropdown">--}}
+        {{--<h6 class="dropdown-header">Manage Section:</h6>--}}
+        {{--<a class="dropdown-item" href="{{url('/getsection')}}">Search Section</a>--}}
+        {{--<a class="dropdown-item" href="{{route('section.create')}}">Create New Section</a>--}}
+        {{--</div>--}}
         {{--</li>--}}
         {{--<li class="nav-item dropdown">--}}
-            {{--<a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
-                {{--<i class="fas fa-fw fa-code-branch"></i>--}}
-                {{--<span>Course</span>--}}
-            {{--</a>--}}
-            {{--<div class="dropdown-menu" aria-labelledby="pagesDropdown">--}}
-                {{--<h6 class="dropdown-header">Manage Course:</h6>--}}
-                {{--<a class="dropdown-item" href="{{url('/getcourse')}}">Search Course</a>--}}
-                {{--<a class="dropdown-item" href="{{route('course.create')}}">Create New Course</a>--}}
-            {{--</div>--}}
+        {{--<a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
+        {{--<i class="fas fa-fw fa-code-branch"></i>--}}
+        {{--<span>Course</span>--}}
+        {{--</a>--}}
+        {{--<div class="dropdown-menu" aria-labelledby="pagesDropdown">--}}
+        {{--<h6 class="dropdown-header">Manage Course:</h6>--}}
+        {{--<a class="dropdown-item" href="{{url('/getcourse')}}">Search Course</a>--}}
+        {{--<a class="dropdown-item" href="{{route('course.create')}}">Create New Course</a>--}}
+        {{--</div>--}}
         {{--</li>--}}
         {{--<li class="nav-item dropdown">--}}
-            {{--<a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
-                {{--<i class="fas fa-fw fa-user-clock"></i>--}}
-                {{--<span>Terms</span>--}}
-            {{--</a>--}}
-            {{--<div class="dropdown-menu" aria-labelledby="pagesDropdown">--}}
-                {{--<h6 class="dropdown-header">Manage Terms:</h6>--}}
-                {{--<a class="dropdown-item" href="{{url('/getterm')}}">Search Terms</a>--}}
-                {{--<a class="dropdown-item" href="{{route('term.create')}}">Create New Term</a>--}}
-            {{--</div>--}}
+        {{--<a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
+        {{--<i class="fas fa-fw fa-user-clock"></i>--}}
+        {{--<span>Terms</span>--}}
+        {{--</a>--}}
+        {{--<div class="dropdown-menu" aria-labelledby="pagesDropdown">--}}
+        {{--<h6 class="dropdown-header">Manage Terms:</h6>--}}
+        {{--<a class="dropdown-item" href="{{url('/getterm')}}">Search Terms</a>--}}
+        {{--<a class="dropdown-item" href="{{route('term.create')}}">Create New Term</a>--}}
+        {{--</div>--}}
         {{--</li>--}}
     </ul>
     <div id="content-wrapper">

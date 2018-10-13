@@ -17,6 +17,7 @@ class Student extends Model
         'year_enrolled',
         'address',
         'gender',
+        'student_number',
 
     ];
 

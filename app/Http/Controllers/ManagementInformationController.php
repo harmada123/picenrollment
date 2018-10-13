@@ -103,6 +103,15 @@ class ManagementInformationController extends Controller
         return view('mis.settings',compact('users'));
 
     }
+    public function userSettings($id){
+        $users = User::find($id);
+        return view('student.settings',compact('users'));
+
+    }
+    public function userInfo($id){
+        $students = Student::find($id);
+        return view('student.usersinfo',compact('students'));
+    }
     public function updateInfo($id){
         $students = Student::find($id);
         return view('mis.usersinfo',compact('students'));
@@ -119,7 +128,7 @@ class ManagementInformationController extends Controller
         $students = Student::find($id);
         $courses = Course::pluck('course','course')->all();
         $sections = Section::pluck('section','id')->all();
-        return view('mis.usersinfo')->with(compact('students','courses','sections'));
+        return view('student.updateinfo')->with(compact('students','courses','sections'));
     }
 
 }

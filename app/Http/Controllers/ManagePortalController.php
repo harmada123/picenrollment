@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Student;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use App\User;
-
-class ManageStudentController extends Controller
+use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
+use App\Section;
+class ManagePortalController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,16 +15,7 @@ class ManageStudentController extends Controller
      */
     public function index()
     {
-        $id = Auth::user()->id;
-
-        $term1 = DB::table('payments')->where(['user_id'=>$id,'term'=>'1st'])->sum('amount');
-        $term2 = DB::table('payments')->where(['user_id'=>$id,'term'=>'2nd'])->sum('amount');
-        $term3 = DB::table('payments')->where(['user_id'=>$id,'term'=>'3rd'])->sum('amount');
-        $term4 = DB::table('payments')->where(['user_id'=>$id,'term'=>'4th'])->sum('amount');
-        $term5 = DB::table('payments')->where(['user_id'=>$id,'term'=>'5th'])->sum('amount');
-        $term6 = DB::table('payments')->where(['user_id'=>$id,'term'=>'6th'])->sum('amount');
-        return view('payments.studentpayments')->with(compact('id','term1','term2','term3','term4','term5','term6','section_id'));
-
+        return view('portal.index');
     }
 
     /**
@@ -47,7 +36,9 @@ class ManageStudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        Payment::create($input);
+        return redirect('/getpayments/'. $input['user_id']);
     }
 
     /**
@@ -81,16 +72,7 @@ class ManageStudentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::findOrFail($id);
-
-        if(trim($request->password)==''){
-            $input = $request->except('password');
-        }
-        else{
-            $input = $request->all();
-            $input['password'] = bcrypt($request->password);
-        }
-        $user->update($input);
+        //
     }
 
     /**
@@ -102,5 +84,18 @@ class ManageStudentController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function get_datatable(){
+        return DataTables::of(Section::query())->make(true);
+    }
+    public function getClass($id){
+        return view('portal.class',compact('id'));
+    }
+    public function datatable($id){
+        return DataTables::of(Student::query()->where('section_id',$id))->make(true);
+    }
+
+    public function getStudents(){
+        return view('portal.grades');
     }
 }

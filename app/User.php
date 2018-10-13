@@ -31,5 +31,8 @@ class User extends Authenticatable
     public function student(){
         return $this->belongsTo('App\Student','std_id');
     }
+    public function role(){
+
+    }
 
 }

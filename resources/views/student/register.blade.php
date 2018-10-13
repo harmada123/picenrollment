@@ -7,6 +7,7 @@
 
                 <div class="card-body">
                     {!! Form::open(['action'=>'RegisterStudents@store','method'=>'POST']) !!}
+
                     <div class="form-group">
                         {!! Form::label('name', 'First Name : ') !!}
                         {!! Form::text('name',null,['class'=>'form-control', 'placeholder'=>'eg. Michael']) !!}

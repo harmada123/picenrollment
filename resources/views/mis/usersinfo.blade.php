@@ -27,14 +27,6 @@
                         {!! Form::text('lname',null,['class'=>'form-control', 'placeholder'=>'eg. Lascanas']) !!}
                     </div>
                     <div class="form-group">
-                        {!! Form::label('course', 'Course : ') !!}
-                        {!! Form::select('course',array('Choose Options') + $courses ,NULL, array('class' => 'form-control')) !!}
-                    </div>
-                    <div class="form-group">
-                        {!! Form::label('section_id', 'Section : ') !!}
-                        {!! Form::select('section_id',array('Choose Options')+ $sections ,NULL, array('class' => 'form-control')) !!}
-                    </div>
-                    <div class="form-group">
                         {!! Form::label('photo_id','Picture:') !!}
                         {!! Form::file('photo_id',['class'=>'btn']) !!}
                     </div>

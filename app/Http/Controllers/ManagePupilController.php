@@ -4,11 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Student;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use App\User;
-
-class ManageStudentController extends Controller
+use App\Photo;
+class ManagePupilController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,16 +14,7 @@ class ManageStudentController extends Controller
      */
     public function index()
     {
-        $id = Auth::user()->id;
-
-        $term1 = DB::table('payments')->where(['user_id'=>$id,'term'=>'1st'])->sum('amount');
-        $term2 = DB::table('payments')->where(['user_id'=>$id,'term'=>'2nd'])->sum('amount');
-        $term3 = DB::table('payments')->where(['user_id'=>$id,'term'=>'3rd'])->sum('amount');
-        $term4 = DB::table('payments')->where(['user_id'=>$id,'term'=>'4th'])->sum('amount');
-        $term5 = DB::table('payments')->where(['user_id'=>$id,'term'=>'5th'])->sum('amount');
-        $term6 = DB::table('payments')->where(['user_id'=>$id,'term'=>'6th'])->sum('amount');
-        return view('payments.studentpayments')->with(compact('id','term1','term2','term3','term4','term5','term6','section_id'));
-
+        //
     }
 
     /**
@@ -81,16 +69,16 @@ class ManageStudentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::findOrFail($id);
-
-        if(trim($request->password)==''){
-            $input = $request->except('password');
+        $student = Student::find($id);
+        $input = $request->all();
+        if($file = $request->file('photo_id')) {
+            $name = time().$file->getClientOriginalName();
+            $file->move('images',$name);
+            $photo = Photo::create(['file'=>$name]);
+            $input['photo_id'] = $photo->id;
         }
-        else{
-            $input = $request->all();
-            $input['password'] = bcrypt($request->password);
-        }
-        $user->update($input);
+        $student->update($input);
+        return redirect('/pupil');
     }
 
     /**

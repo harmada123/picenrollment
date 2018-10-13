@@ -39,7 +39,7 @@ class ManagePaymentController extends Controller
     {
         $input = $request->all();
         Payment::create($input);
-        return redirect('/student');
+        return redirect('/getpayments/'. $input['user_id']);
     }
 
     /**
@@ -87,6 +87,18 @@ class ManagePaymentController extends Controller
         //
     }
     public function getPayments($id){
+
+        $section_id = Student::find($id)->section_id;
+
+        $term1 = DB::table('payments')->where(['user_id'=>$id,'term'=>'1st'])->sum('amount');
+        $term2 = DB::table('payments')->where(['user_id'=>$id,'term'=>'2nd'])->sum('amount');
+        $term3 = DB::table('payments')->where(['user_id'=>$id,'term'=>'3rd'])->sum('amount');
+        $term4 = DB::table('payments')->where(['user_id'=>$id,'term'=>'4th'])->sum('amount');
+        $term5 = DB::table('payments')->where(['user_id'=>$id,'term'=>'5th'])->sum('amount');
+        $term6 = DB::table('payments')->where(['user_id'=>$id,'term'=>'6th'])->sum('amount');
+        return view('payments.index')->with(compact('id','term1','term2','term3','term4','term5','term6','section_id'));
+    }
+    public function getStudentPayments($id){
 
         $section_id = Student::find($id)->section_id;
 
