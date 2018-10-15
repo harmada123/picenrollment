@@ -2,14 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Course;
-use App\Session;
-use App\Student;
-use App\Subject;
 use Illuminate\Http\Request;
-use Yajra\DataTables\DataTables;
-use App\Section;
-class ManagePortalController extends Controller
+
+class ManageSubjectController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +13,7 @@ class ManagePortalController extends Controller
      */
     public function index()
     {
-        return view('portal.index');
+        //
     }
 
     /**
@@ -39,9 +34,7 @@ class ManagePortalController extends Controller
      */
     public function store(Request $request)
     {
-        $input = $request->all();
-        Session::create($input);
-        return redirect('/getpayments/'. $input['user_id']);
+        //
     }
 
     /**
@@ -87,28 +80,5 @@ class ManagePortalController extends Controller
     public function destroy($id)
     {
         //
-    }
-    public function get_datatable(){
-        return DataTables::of(Section::query())->make(true);
-    }
-    public function getClass($id){
-        return view('portal.class',compact('id'));
-    }
-    public function datatable($id){
-        return DataTables::of(Student::query()->where('section_id',$id))->make(true);
-    }
-    public function get_grades($id){
-        return DataTables::of(Session::query()->where('std_id',$id))->make(true);
-    }
-
-    public function getStudents($id){
-        $student = Student::find($id);
-        $section  = $student->section_id;
-        return view('portal.grades',compact('id','section'));
-    }
-
-    public function makeSubject(){
-        $course = Course::pluck('course','course')->all();
-        return view('portal.addsection',compact('course'));
     }
 }

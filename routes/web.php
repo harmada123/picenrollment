@@ -65,8 +65,10 @@ Route::resource('/studview','ManagePupilController');
 
 Route::group(['middleware'=>'portal'],function(){
     Route::resource('/portal','ManagePortalController');
+    Route::get('getgrades/{id}/get_datatable','ManagePortalController@get_grades');
     Route::get('/grades/get_datatable/','ManagePortalController@get_datatable');
     Route::get('/classroom/{id}','ManagePortalController@getClass');
     Route::get('/classroom/{id}/get_datatable/','ManagePortalController@datatable');
     Route::get('/classroom/getstudents/{id}','ManagePortalController@getStudents');
+    Route::get('/makesubject','ManagePortalController@makeSubject');
 });
