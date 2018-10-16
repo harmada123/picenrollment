@@ -9,7 +9,7 @@ class Session extends Model
     protected $fillable = [
         'std_id',
         'section_id',
-        'subject_id',
+        'subject',
         'grade'
     ];
 }

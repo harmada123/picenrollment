@@ -71,4 +71,5 @@ Route::group(['middleware'=>'portal'],function(){
     Route::get('/classroom/{id}/get_datatable/','ManagePortalController@datatable');
     Route::get('/classroom/getstudents/{id}','ManagePortalController@getStudents');
     Route::get('/makesubject','ManagePortalController@makeSubject');
+    Route::resource('subject', 'ManageSubjectController');
 });

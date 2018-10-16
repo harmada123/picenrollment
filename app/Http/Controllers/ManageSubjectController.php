@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Subject;
 use Illuminate\Http\Request;
 
 class ManageSubjectController extends Controller
@@ -34,7 +35,10 @@ class ManageSubjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        Subject::create($input);
+        return redirect('/makesubject');
+
     }
 
     /**

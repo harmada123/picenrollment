@@ -41,7 +41,7 @@ class ManagePortalController extends Controller
     {
         $input = $request->all();
         Session::create($input);
-        return redirect('/getpayments/'. $input['user_id']);
+        return redirect('/classroom/getstudents/'. $input['std_id']);
     }
 
     /**
@@ -103,8 +103,10 @@ class ManagePortalController extends Controller
 
     public function getStudents($id){
         $student = Student::find($id);
+        $course = $student->course;
         $section  = $student->section_id;
-        return view('portal.grades',compact('id','section'));
+        $subject = Subject::pluck('subject_name','subject_code')->all();
+        return view('portal.grades')->with(compact('id','section','subject','course'));
     }
 
     public function makeSubject(){

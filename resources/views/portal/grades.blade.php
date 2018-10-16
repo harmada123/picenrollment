@@ -3,7 +3,7 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <ol class="breadcrumb">
-                Manage Grades
+                Manage Grades {{$course}}
             </ol>
         </div>
     </div>
@@ -17,14 +17,14 @@
                             {!! Form::open(['method'=>'POST','action'=>'ManagePortalController@store']) !!}
                             <div class="form-group">
                                 {!! Form::label('subject', 'Subject : ') !!}
-                                {!! Form::select('subject',array('Choose Options'),null,['class'=>'form-control']) !!}
+                                {!! Form::select('subject',array('Choose Options') + $subject ,null,['class'=>'form-control']) !!}
                             </div>
                             <div class="form-group">
-                                {!! Form::label('grades', 'Grades : ') !!}
-                                {!! Form::number('grades',null,['class'=>'form-control']) !!}
+                                {!! Form::label('grade', 'Grades : ') !!}
+                                {!! Form::number('grade',null,['class'=>'form-control']) !!}
                             </div>
                             <div class="form-group">
-                                {!! Form::hidden('user_id',$id,['value'=>$id]); !!}
+                                {!! Form::hidden('std_id',$id,['value'=>$id]); !!}
                                 {!! Form::hidden('section_id',$section,['value'=>$section]); !!}
                             </div>
                             <div class="form-group">
