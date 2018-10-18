@@ -30,7 +30,7 @@
                         {!! Form::textarea('address',NULL,['class' => 'form-control']) !!}
                     </div>
                     <div class="form-group">
-                        {!! Form::label('email','Email:') !!}
+                        {!! Form::label('email','Email or Mobile Number:') !!}
                         {!! Form::text('email',null,['class'=>'form-control']) !!}
                     </div>
                     <div class="form-group">
@@ -44,7 +44,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        {!! Form::submit('Create Students',['class'=>'btn btn-primary']) !!}
+                        {!! Form::submit('Create Account',['class'=>'btn btn-primary']) !!}
                     </div>
                     {!! Form::close() !!}
                 </div>

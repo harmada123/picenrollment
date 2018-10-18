@@ -128,7 +128,7 @@ class ManagePaymentController extends Controller
     }
     public function datatable($id){
         return DataTables::of(Payment::join('students','payments.user_id','students.id')
-            ->select('students.id','students.name','students.lname','payments.amount')
+            ->select('students.student_number','students.name','students.lname','payments.amount')
             ->where('students.section_id',$id))->make(true);
     }
 

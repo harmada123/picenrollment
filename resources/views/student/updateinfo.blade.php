@@ -36,11 +36,11 @@
                     </div>
                     <div class="form-group">
                         {!! Form::label('course', 'Course : ') !!}
-                        {!! Form::select('course',array('Choose Options') + $courses ,NULL, array('class' => 'form-control')) !!}
+                        {!! Form::select('course',array(null=>'Choose Options') + $courses ,NULL, ['class' => 'form-control','required']) !!}
                     </div>
                     <div class="form-group">
                         {!! Form::label('section_id', 'Section : ') !!}
-                        {!! Form::select('section_id',array('Choose Options')+ $sections ,NULL, array('class' => 'form-control')) !!}
+                        {!! Form::select('section_id',array(null=>'Choose Options')+ $sections ,NULL, array('class' => 'form-control','required')) !!}
                     </div>
                     <div class="form-group">
                         {!! Form::submit('Update Information',['class'=>'btn btn-primary']) !!}

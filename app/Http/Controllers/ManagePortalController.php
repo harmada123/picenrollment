@@ -105,7 +105,7 @@ class ManagePortalController extends Controller
         $student = Student::find($id);
         $course = $student->course;
         $section  = $student->section_id;
-        $subject = Subject::pluck('subject_name','subject_code')->all();
+        $subject = Subject::query('course_avail',$section)->pluck('subject_name','subject_name')->all();
         return view('portal.grades')->with(compact('id','section','subject','course'));
     }
 

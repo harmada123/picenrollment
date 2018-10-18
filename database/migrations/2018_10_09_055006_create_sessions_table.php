@@ -18,7 +18,7 @@ class CreateSessionsTable extends Migration
             $table->integer('std_id');
             $table->integer('section_id');
             $table->string('subject');
-            $table->integer('grade');
+            $table->string('grade');
             $table->timestamps();
         });
     }

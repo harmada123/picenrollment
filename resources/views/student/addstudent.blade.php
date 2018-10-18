@@ -30,7 +30,7 @@
                                 {!! Form::text('lname',null,['class'=>'form-control', 'placeholder'=>'eg. Lascanas']) !!}
                             </div>
                             <div class="form-group">
-                                {!! Form::label('email','Email:') !!}
+                                {!! Form::label('email','Email or Mobile Number:') !!}
                                 {!! Form::text('email',null,['class'=>'form-control']) !!}
                             </div>
                             <div class="form-group">

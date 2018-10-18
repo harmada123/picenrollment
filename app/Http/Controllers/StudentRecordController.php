@@ -118,7 +118,7 @@ class StudentRecordController extends Controller
         return view('student.index');
     }
     public function get_datatable(){
-        $students = Student::join('sections','students.section_id','sections.id')->select('students.id','students.name','students.lname','sections.section','students.course');
+        $students = Student::join('sections','students.section_id','sections.id')->select('students.id','students.student_number','students.name','students.lname','sections.section','students.course');
         return DataTables::of($students)->make(true);
     }
 

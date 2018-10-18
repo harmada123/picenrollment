@@ -34,7 +34,7 @@
                 serverSide: true,
                 ajax: '/picenrollment/public/getstudent/get_datatable',
                 columns : [
-                    {data: 'id', name: 'students.id'},
+                    {data: 'student_number', name: 'students.student_number'},
                     {data: 'name', name:'students.name'},
                     {data: 'lname', name:'students.lname'},
                     {data: 'course', name:'students.course'},

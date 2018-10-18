@@ -21,7 +21,7 @@
                             </div>
                             <div class="form-group">
                                 {!! Form::label('grade', 'Grades : ') !!}
-                                {!! Form::number('grade',null,['class'=>'form-control']) !!}
+                                {!! Form::select('grade',array('Choose Options', 'A+'=>'A+','A'=>'A','B+'=>'B+','B'=>'B','C+'=>'C+','C'=>'C','D+'=>'D+','D'=>'D',),null,['class'=>'form-control']) !!}
                             </div>
                             <div class="form-group">
                                 {!! Form::hidden('std_id',$id,['value'=>$id]); !!}
@@ -43,7 +43,6 @@
                         <table id="terms" class="table table-hover table-striped">
                             <thead>
                             <tr>
-                                <th>ID</th>
                                 <th>Subject</th>
                                 <th>Grade</th>
                             </tr>
@@ -67,7 +66,6 @@
                 serverSide: true,
                 ajax: '/picenrollment/public/getgrades/' + {{$id}} +'/get_datatable',
                 columns : [
-                    {data: 'id'},
                     {data: 'subject',},
                     {data: 'grade'},
                 ],
