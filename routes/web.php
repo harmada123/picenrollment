@@ -57,19 +57,24 @@ Route::group(['middleware'=>'payment'],function (){
     Route::get('/users/{id}','ManagementInformationController@updateCourse');
 });
 
-Route::resource('/pupil','ManageStudentController');
-Route::get('/usersettings/{id}','ManagementInformationController@userSettings');
-Route::get('/studentusersinfo/{id}','ManagementInformationController@userInfo');
-Route::resource('/studview','ManagePupilController');
-
-
 Route::group(['middleware'=>'portal'],function(){
     Route::resource('/portal','ManagePortalController');
+    Route::resource('subject', 'ManageSubjectController');
+
     Route::get('getgrades/{id}/get_datatable','ManagePortalController@get_grades');
     Route::get('/grades/get_datatable/','ManagePortalController@get_datatable');
+
     Route::get('/classroom/{id}','ManagePortalController@getClass');
     Route::get('/classroom/{id}/get_datatable/','ManagePortalController@datatable');
     Route::get('/classroom/getstudents/{id}','ManagePortalController@getStudents');
     Route::get('/makesubject','ManagePortalController@makeSubject');
-    Route::resource('subject', 'ManageSubjectController');
+
 });
+
+Route::resource('/pupil','ManageStudentController');
+Route::resource('/studview','ManagePupilController');
+Route::get('/usersettings/{id}','ManagementInformationController@userSettings');
+Route::get('/studentusersinfo/{id}','ManagementInformationController@userInfo');
+Route::get('/grades','ManagePupilController@showGrades');
+Route::get('/get_grades/get_datatable/','ManagePupilController@get_datatable');
+

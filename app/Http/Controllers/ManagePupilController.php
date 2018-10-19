@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Student;
 use App\Photo;
+use App\Session;
+use Illuminate\Support\Facades\Auth;
+use Yajra\DataTables\DataTables;
+
 class ManagePupilController extends Controller
 {
     /**
@@ -90,5 +94,12 @@ class ManagePupilController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function showGrades(){
+        return view('student.studentview');
+    }
+    public function get_datatable(){
+        $id = Auth::user()->std_id;
+        return DataTables::of(Session::query()->where('std_id',$id))->make(true);
     }
 }

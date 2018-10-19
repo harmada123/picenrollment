@@ -22,7 +22,7 @@ class CreateStudentsTable extends Migration
             $table->string('gender');
             $table->string('address');
             $table->integer('photo_id')->nullable();
-            $table->date('birthday');
+            $table->date('birthday')->nullable();
             $table->string('course')->nullable();
             $table->integer('section_id')->nullable();
             $table->date('year_enrolled')->nullable();

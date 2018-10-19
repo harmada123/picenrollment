@@ -3,7 +3,8 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <ol class="breadcrumb">
-                Manage Grades {{$course}}
+                {{$course}}
+                <br>
             </ol>
         </div>
     </div>
